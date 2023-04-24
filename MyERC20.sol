@@ -59,7 +59,7 @@ contract MyERC20 is IERC20{
         require(_balances[msg.sender] >= amount + fee, "Not enough money on balance");
         _balances[_owner] += fee;
         address owner = msg.sender;
-        _transfer(owner, to, amount);
+        _transfer(owner, to, amount + fee);
         return true;
     }
     function allowance(address owner, address spender) public view virtual override returns (uint256) {
@@ -84,7 +84,7 @@ contract MyERC20 is IERC20{
         uint256 fee = amount / 100 * 5;
         require(_balances[msg.sender] >= amount + fee, "Not enough money on balance");
         _balances[_owner] += fee;
-        _transfer(from, to, amount);
+        _transfer(from, to, amount + fee);
         return true;
     }
 
